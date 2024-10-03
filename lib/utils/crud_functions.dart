@@ -12,7 +12,6 @@ void loadItems({VoidCallback? setarEstado}) async {
 }
 
 handleClickSave({VoidCallback? setarEstado, context}) async {
-  print("Valor Inicial: ${Variaveis.listItens.length}");
   Variaveis.currentItens = await savedItem();
   if (Variaveis.formKey.currentState!.validate()) {
     if (Variaveis.textEditingController.text.isNotEmpty) {
@@ -23,6 +22,7 @@ handleClickSave({VoidCallback? setarEstado, context}) async {
           urlImagem: Variaveis.urlEditingController.text);
 
       Variaveis.currentItens.add(newItem);
+      // Variaveis.listItens.addAll(Variaveis.currentItens);
       saveItem(Variaveis.currentItens);
 
       clearController();
@@ -32,10 +32,6 @@ handleClickSave({VoidCallback? setarEstado, context}) async {
           return const AlertDialogSave();
         },
       );
-
-      print(
-          "Salvos: ${newItem.name}, ${newItem.description}, ${newItem.id}, ${newItem.urlImagem}");
-      print("Valor pós-salvar: ${Variaveis.listItens.length}");
     }
   } else {
     const AlertDialog(
