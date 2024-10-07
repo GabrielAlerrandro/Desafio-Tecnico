@@ -4,77 +4,62 @@ import 'package:flutter_application_1/utils/clear_controller.dart';
 import 'package:flutter_application_1/utils/save_item.dart';
 import 'package:flutter_application_1/utils/saved_items.dart';
 import 'package:flutter_application_1/utils/variaveis.dart';
-import 'package:flutter_application_1/widgets/alert_dialog_save.dart';
 
-void loadItems({VoidCallback? setarEstado}) async {
+void loadItems({VoidCallback? refreshState}) async {
   Variaveis.currentItens = await savedItem();
-  setarEstado!();
+  refreshState!();
+  Variaveis.listItens = Variaveis.currentItens;
 }
 
-handleClickSave({VoidCallback? setarEstado, context}) async {
+handleClickSave({VoidCallback? refreshState, context}) async {
   Variaveis.currentItens = await savedItem();
   if (Variaveis.formKey.currentState!.validate()) {
-    if (Variaveis.textEditingController.text.isNotEmpty) {
+    if (Variaveis.nameEditingController.text.isNotEmpty &&
+        Variaveis.descriptionEditingController.text.isNotEmpty) {
       Item newItem = Item(
-          id: Variaveis.textEditingController.text,
           name: Variaveis.nameEditingController.text,
           description: Variaveis.descriptionEditingController.text,
           urlImagem: Variaveis.urlEditingController.text);
 
       Variaveis.currentItens.add(newItem);
-      // Variaveis.listItens.addAll(Variaveis.currentItens);
       saveItem(Variaveis.currentItens);
 
       clearController();
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const AlertDialogSave();
-        },
-      );
     }
-  } else {
-    const AlertDialog(
-      content: Text("Invalido"),
-    );
   }
 
   Variaveis.listItens = Variaveis.currentItens;
   loadItems(
-    setarEstado: () {
-      setarEstado!();
+    refreshState: () {
+      refreshState!();
     },
   );
-  print("Valor final: ${Variaveis.listItens.length}");
 }
 
-updateItem({context, index, Function? setarEstado}) {
+updateItem({context, index, Function? refreshState}) {
   Item itemUpdated = Item(
-      id: Variaveis.textEditingController.text,
       name: Variaveis.nameEditingController.text,
       description: Variaveis.descriptionEditingController.text,
       urlImagem: Variaveis.urlEditingController.text);
   Variaveis.listItens[index] = itemUpdated;
   saveItem(itemUpdated);
-  setarEstado!();
+  refreshState!();
   clearController();
-  Navigator.popAndPushNamed(context, "/");
 }
 
-handleEdit({index, Function? setarEstado}) async {
+handleEdit({index, Function? refreshState}) async {
   Variaveis.currentItens = await savedItem();
-  Variaveis.textEditingController.text = Variaveis.currentItens[index].id;
   Variaveis.nameEditingController.text = Variaveis.currentItens[index].name;
   Variaveis.descriptionEditingController.text =
       Variaveis.currentItens[index].description;
   Variaveis.urlEditingController.text = Variaveis.currentItens[index].urlImagem;
-  setarEstado!();
+  refreshState!();
 }
 
-void deleteItem({int index = 0, Function? setarEstado}) async {
+void deleteItem({int index = 0, Function? refreshState}) async {
   Variaveis.listItens.removeAt(index);
   saveItem(Variaveis.listItens);
-  loadItems(setarEstado: () {
-    setarEstado!();
+  loadItems(refreshState: () {
+    refreshState!();
   });
 }

@@ -5,10 +5,10 @@ import 'package:flutter_application_1/utils/show_modals.dart';
 import 'package:flutter_application_1/utils/variaveis.dart';
 
 class ListtileEdit extends StatelessWidget {
-  final VoidCallback setarEstado;
+  final VoidCallback refreshState;
   final int index;
   const ListtileEdit(
-      {super.key, required this.setarEstado, required this.index});
+      {super.key, required this.refreshState, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +32,18 @@ class ListtileEdit extends StatelessWidget {
             onPressed: () {
               handleEdit(
                   index: index,
-                  setarEstado: () {
-                    setarEstado();
+                  refreshState: () {
+                    refreshState();
                   });
 
-              showModalEdit(context, index, () => setarEstado);
+              showModalEdit(context, index, () => refreshState);
             },
           ),
           iconButtonEdit(
               context: context,
               index: index,
-              setarEstado: () {
-                setarEstado();
+              refreshState: () {
+                refreshState();
               })
         ],
       ),

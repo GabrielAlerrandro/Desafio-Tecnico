@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CustomElevatedButtom extends StatelessWidget {
+class CustomElevatedButton extends StatelessWidget {
   final String text;
   final Color? color;
   final Function? function;
 
-  const CustomElevatedButtom(
+  const CustomElevatedButton(
       {super.key, required this.text, this.color, this.function});
 
   @override

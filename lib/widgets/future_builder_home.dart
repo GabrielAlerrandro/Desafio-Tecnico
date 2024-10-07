@@ -4,8 +4,8 @@ import 'package:flutter_application_1/utils/saved_items.dart';
 import 'package:flutter_application_1/widgets/card.dart';
 
 class FutureBuilderHome extends StatelessWidget {
-  const FutureBuilderHome({super.key, required this.setarEstado});
-  final VoidCallback setarEstado;
+  const FutureBuilderHome({super.key, required this.refreshState});
+  final VoidCallback refreshState;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -24,8 +24,8 @@ class FutureBuilderHome extends StatelessWidget {
                   CardItem(
                     index: index,
                     item: item,
-                    setarEstado: () {
-                      setarEstado();
+                    refreshState: () {
+                      refreshState();
                     },
                   )
                 ],

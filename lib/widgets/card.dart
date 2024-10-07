@@ -6,12 +6,12 @@ import 'package:flutter_application_1/utils/show_modals.dart';
 class CardItem extends StatelessWidget {
   final int index;
   final List<Item> item;
-  final Function setarEstado;
+  final Function refreshState;
   const CardItem(
       {super.key,
       required this.index,
       required this.item,
-      required this.setarEstado});
+      required this.refreshState});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,10 @@ class CardItem extends StatelessWidget {
           Navigator.of(context).pushNamed("/edit");
           handleEdit(
               index: index,
-              setarEstado: () {
-                setarEstado;
+              refreshState: () {
+                refreshState;
               });
-          showModalEdit(context, index, () => setarEstado);
+          showModalEdit(context, index, () => refreshState);
         },
         child: Column(
           children: [
@@ -39,9 +39,14 @@ class CardItem extends StatelessWidget {
                 width: double.infinity,
                 child: Image.network(
                   fit: BoxFit.cover,
-                  item[index].urlImagem.isEmpty
-                      ? "https://via.placeholder.com/450"
-                      : item[index].urlImagem,
+                  errorBuilder: (context, error, stackTrace) => ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: const Icon(
+                      Icons.image,
+                      size: 50,
+                    ),
+                  ),
+                  item[index].urlImagem,
                 ),
               ),
             ),

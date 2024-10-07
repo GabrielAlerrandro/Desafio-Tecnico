@@ -16,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: type == "img" ? TextInputType.url : TextInputType.text,
       style: const TextStyle(color: Colors.white70),
       controller: controller,
       decoration: formDecoration(label: text),

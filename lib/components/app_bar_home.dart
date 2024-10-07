@@ -6,5 +6,6 @@ AppBar appBarHome() {
     centerTitle: true,
     backgroundColor: const Color(0xFF172031),
     titleTextStyle: const TextStyle(color: Colors.white, fontSize: 22),
+    automaticallyImplyLeading: false,
   );
 }

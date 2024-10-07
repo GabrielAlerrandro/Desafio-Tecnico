@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/crud_functions.dart';
 
-IconButton iconButtonEdit({context, int index = 0, VoidCallback? setarEstado}) {
+IconButton iconButtonEdit(
+    {context, int index = 0, VoidCallback? refreshState}) {
   return IconButton(
     tooltip: "Remover item",
     icon: const Icon(Icons.delete),
@@ -30,8 +31,8 @@ IconButton iconButtonEdit({context, int index = 0, VoidCallback? setarEstado}) {
                   onPressed: () {
                     deleteItem(
                         index: index,
-                        setarEstado: () {
-                          setarEstado!();
+                        refreshState: () {
+                          refreshState!();
                         });
                     Navigator.pop(context);
                   },

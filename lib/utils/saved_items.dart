@@ -8,8 +8,8 @@ Future<List<Item>> savedItem() async {
   if (jsonItem == null) {
     return [];
   }
-  List<dynamic> teste = json.decode(jsonItem);
-  List<Item> items = teste.map((item) => Item.fromJson(item)).toList();
+  List<dynamic> mapItem = json.decode(jsonItem);
+  List<Item> items = mapItem.map((item) => Item.fromJson(item)).toList();
 
   return items;
 }
