@@ -22,14 +22,14 @@ class CardItem extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
-        onLongPress: () {
+        onTap: () {
           Navigator.of(context).pushNamed("/edit");
-          handleEdit(
+          onClickEdit(
               index: index,
               refreshState: () {
                 refreshState;
               });
-          showModalEdit(context, index, () => refreshState);
+          showModalEditItem(context, index, () => refreshState);
         },
         child: Column(
           children: [

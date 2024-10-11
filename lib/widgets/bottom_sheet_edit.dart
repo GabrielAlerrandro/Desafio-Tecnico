@@ -18,9 +18,8 @@ class BottomSheetEdit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool confirmExitModal = true;
-    return TapRegion(
-      onTapOutside: (event) => confirmExitModal ? clearController() : null,
+    return PopScope(
+      canPop: false,
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.8,
         child: Padding(
@@ -61,26 +60,34 @@ class BottomSheetEdit extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: CustomElevatedButton(
                             text: "Cancelar",
-                            color: const Color(0xFF2D3243),
+                            color: const Color(Variaveis.greyColor),
                             function: () {
-                              Navigator.pop(context);
+                              Navigator.popAndPushNamed(context, "/");
                               clearController();
                             }),
                       ),
                       CustomElevatedButton(
                         text: "Salvar",
-                        color: const Color(0xFF256EFF),
+                        color: const Color(Variaveis.blueColor),
                         function: () {
-                          if (Variaveis.formKey.currentState?.validate() ??
-                              false) {
-                            callBackFunctionEdit(index);
-                            return showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (BuildContext context) {
-                                confirmExitModal = false;
-                                return const AlertDialogModalEdit();
-                              },
+                          try {
+                            if (Variaveis.formKey.currentState?.validate() ??
+                                false) {
+                              callBackFunctionEdit(index);
+                              return showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const AlertDialogModalEdited();
+                                },
+                              );
+                            }
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text("Não foi possivel salvar o item: $e"),
+                              ),
                             );
                           }
                         },
@@ -91,18 +98,26 @@ class BottomSheetEdit extends StatelessWidget {
                           text: "Excluir",
                           color: const Color(0xFFF44336),
                           function: () {
-                            showDialog(
-                                barrierDismissible: false,
-                                context: context,
-                                builder: (BuildContext context) {
-                                  confirmExitModal = false;
-                                  return AlertDialogExcluido(
-                                    callBackFunctionDelete: () {
-                                      callBackFunctionDelete(index);
-                                      Navigator.popAndPushNamed(context, "/");
-                                    },
-                                  );
-                                });
+                            try {
+                              showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialogDeleted(
+                                      callBackFunctionDelete: () {
+                                        callBackFunctionDelete(index);
+                                        Navigator.popAndPushNamed(context, "/");
+                                      },
+                                    );
+                                  });
+                            } catch (e) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      "Não foi possivel excluir o item: $e"),
+                                ),
+                              );
+                            }
                           },
                         ),
                       ),

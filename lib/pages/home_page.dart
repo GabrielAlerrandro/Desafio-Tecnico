@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/scaffold_home.dart';
+import 'package:flutter_application_1/screens/scaffold_home.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/app_bar_edit.dart';
 import 'package:flutter_application_1/utils/crud_functions.dart';
 import 'package:flutter_application_1/utils/show_modals.dart';
+import 'package:flutter_application_1/utils/variaveis.dart';
 
 class ScaffoldEdit extends StatefulWidget {
   const ScaffoldEdit({super.key});
@@ -24,16 +25,16 @@ class _ScaffoldEditState extends State<ScaffoldEdit> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: const Color(0xFF0C1633),
+        backgroundColor: const Color(Variaveis.deepBlueColor),
         appBar: appBarEdit(context),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: const Color(0xFF256EFF),
+          backgroundColor: const Color(Variaveis.blueColor),
           child: const Icon(
             Icons.add,
             color: Colors.white,
           ),
           onPressed: () {
-            showModalAdd(context);
+            showModalAddItem(context);
           },
         ),
       ),

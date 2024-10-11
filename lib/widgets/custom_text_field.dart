@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/decoration_form_modal.dart';
+import 'package:flutter_application_1/utils/variaveis.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String text;
@@ -17,7 +18,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: type == "img" ? TextInputType.url : TextInputType.text,
-      style: const TextStyle(color: Colors.white70),
+      style: const TextStyle(color: Variaveis.textWhiteColor),
       controller: controller,
       decoration: formDecoration(label: text),
       validator: (String? value) {

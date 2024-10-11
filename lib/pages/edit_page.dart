@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/scaffold_edit.dart';
+import 'package:flutter_application_1/screens/scaffold_edit.dart';
 
 class EditPage extends StatelessWidget {
   const EditPage({super.key});

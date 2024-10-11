@@ -14,6 +14,11 @@ class FutureBuilderHome extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         }
+        if (snapshot.hasError) {
+          return Center(
+              child: Text(
+                  "Não foi possivel carregar os itens: ${snapshot.error}"));
+        }
         if (snapshot.hasData && !snapshot.hasError && snapshot.data != null) {
           final item = snapshot.data as List<Item>;
           return ListView.builder(
@@ -33,7 +38,9 @@ class FutureBuilderHome extends StatelessWidget {
             },
           );
         }
-        return Container();
+        return const Center(
+          child: Text("Nenhum item encontrado"),
+        );
       },
     );
   }

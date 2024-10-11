@@ -13,7 +13,7 @@ class CustomElevatedButton extends StatelessWidget {
     return ElevatedButton(
         style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(color)),
         onPressed: () {
-          function!();
+          function?.call();
         },
         child: Text(text, style: const TextStyle(color: Colors.white)));
   }

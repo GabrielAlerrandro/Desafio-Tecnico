@@ -13,4 +13,10 @@ class Variaveis {
   static List<Item> listItens = [];
   static List<Item> currentItens = [];
   static final formKey = GlobalKey<FormState>();
+  static const textWhiteColor = Colors.white70;
+  static const blueColor = 0xFF256EFF;
+  static const deepBlueColor = 0xFF0C1633;
+  static const whiteColor = Colors.white;
+  static const greyColor = 0xFF2D3243;
+  static const greyBlueColor = 0xFF172031;
 }

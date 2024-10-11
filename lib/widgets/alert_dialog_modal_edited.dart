@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/variaveis.dart';
 
-class AlertDialogModalEdit extends StatelessWidget {
-  const AlertDialogModalEdit({
+class AlertDialogModalEdited extends StatelessWidget {
+  const AlertDialogModalEdited({
     super.key,
   });
 
@@ -10,9 +11,9 @@ class AlertDialogModalEdit extends StatelessWidget {
     return PopScope(
       canPop: false,
       child: AlertDialog(
-        backgroundColor: const Color(0xFF2D3243),
+        backgroundColor: const Color(Variaveis.greyColor),
         content: const Text("Item Editado!",
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: Variaveis.textWhiteColor)),
         actions: [
           TextButton(
             onPressed: () {
@@ -21,7 +22,7 @@ class AlertDialogModalEdit extends StatelessWidget {
             },
             child: const Text(
               "OK!",
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: Variaveis.textWhiteColor),
             ),
           ),
         ],

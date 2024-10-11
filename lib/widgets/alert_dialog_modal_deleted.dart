@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/variaveis.dart';
 
-class AlertDialogExcluido extends StatelessWidget {
+class AlertDialogDeleted extends StatelessWidget {
   final VoidCallback callBackFunctionDelete;
-  const AlertDialogExcluido({super.key, required this.callBackFunctionDelete});
+  const AlertDialogDeleted({super.key, required this.callBackFunctionDelete});
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
       child: AlertDialog(
-        backgroundColor: const Color(0xFF2D3243),
+        backgroundColor: const Color(Variaveis.greyColor),
         title: const Text(
           "Confirmar Exclusão",
-          style: TextStyle(color: Colors.white70),
+          style: TextStyle(color: Variaveis.textWhiteColor),
         ),
         content: const Text("Tem certeza que deseja apagar o item?",
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: Variaveis.textWhiteColor)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text(
               "Cancelar",
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: Variaveis.textWhiteColor),
             ),
           ),
           TextButton(

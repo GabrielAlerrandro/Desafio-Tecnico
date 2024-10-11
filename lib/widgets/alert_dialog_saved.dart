@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/variaveis.dart';
 
-class AlertDialogSave extends StatelessWidget {
-  const AlertDialogSave({super.key});
+class AlertDialogSaved extends StatelessWidget {
+  const AlertDialogSaved({super.key});
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
       child: AlertDialog(
-        backgroundColor: const Color(0xFF2D3243),
+        backgroundColor: const Color(Variaveis.greyColor),
         content: const Text("Item adicionado com sucesso!",
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: Variaveis.textWhiteColor)),
         actions: [
           TextButton(
             onPressed: () {
@@ -19,7 +20,7 @@ class AlertDialogSave extends StatelessWidget {
             },
             child: const Text(
               "OK!",
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: Variaveis.textWhiteColor),
             ),
           ),
         ],

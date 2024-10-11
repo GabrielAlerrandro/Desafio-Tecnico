@@ -11,8 +11,8 @@ class BottomSheetAdd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TapRegion(
-      onTapOutside: (event) => clearController(),
+    return PopScope(
+      canPop: false,
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.9,
         child: Padding(
@@ -53,25 +53,34 @@ class BottomSheetAdd extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: CustomElevatedButton(
                             text: "Cancelar",
-                            color: const Color(0xFF2D3243),
+                            color: const Color(Variaveis.greyColor),
                             function: () {
-                              Navigator.pop(context);
+                              Navigator.popAndPushNamed(context, "/");
                               clearController();
                             }),
                       ),
                       CustomElevatedButton(
                         text: "Salvar",
-                        color: const Color(0xFF256EFF),
+                        color: const Color(Variaveis.blueColor),
                         function: () {
-                          if (Variaveis.formKey.currentState?.validate() ??
-                              false) {
-                            callBackFunctionAdd();
-                            showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return const AlertDialogSave();
-                              },
+                          try {
+                            if (Variaveis.formKey.currentState?.validate() ??
+                                false) {
+                              callBackFunctionAdd();
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const AlertDialogSaved();
+                                },
+                              );
+                            }
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text("Não foi possivel salvar o item: $e"),
+                              ),
                             );
                           }
                         },

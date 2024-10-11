@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/app_bar_home.dart';
 import 'package:flutter_application_1/utils/crud_functions.dart';
+import 'package:flutter_application_1/utils/variaveis.dart';
 import 'package:flutter_application_1/widgets/future_builder_home.dart';
 import 'package:flutter_application_1/utils/show_modals.dart';
 
@@ -25,17 +26,17 @@ class _ScaffoldHomeState extends State<ScaffoldHome> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-          backgroundColor: const Color(0xFF0C1633),
+          backgroundColor: const Color(Variaveis.deepBlueColor),
           appBar: appBarHome(),
           floatingActionButton: FloatingActionButton(
-            backgroundColor: const Color(0xFF256EFF),
+            backgroundColor: const Color(Variaveis.blueColor),
             onPressed: () {
               Navigator.of(context).pushNamed("/edit");
-              showModalAdd(context);
+              showModalAddItem(context);
             },
             child: const Icon(
               Icons.add,
-              color: Colors.white,
+              color: Variaveis.whiteColor,
             ),
           ),
           body: FutureBuilderHome(
